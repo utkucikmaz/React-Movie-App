@@ -11,12 +11,13 @@ export default function Main() {
         const [ searchTerm, setSearchTerm ] = useState("")
 
         const getMovies = (API) => {
-            axios.get(API).then((res) => console.log(res.data.results))
+            axios.get(API).then((res) => console.log(res.data.results)).catch((err) => console.log(err))
         };
 
         const handleSubmit = (e) => {
             e.preventDefault();
-            console.log(searchTerm)
+            getMovies(FILTERED + searchTerm)
+            setSearchTerm ('')
         }
 
         useEffect (() => {
