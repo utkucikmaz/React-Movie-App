@@ -1,6 +1,7 @@
 import React, { useEffect} from "react";
 import { useState } from "react";
 import axios from "axios";
+import MovieCard from "../components/MovieCard";
 
 const UNFILTERED = 'https://api.themoviedb.org/3/discover/movie?api_key=c4fc804c03fb9b75054c5bb4fd565b9c';
 
@@ -9,9 +10,12 @@ const FILTERED = 'https://api.themoviedb.org/3/search/movie?api_key=c4fc804c03fb
 export default function Main() {
 
         const [ searchTerm, setSearchTerm ] = useState("")
+        const[ movies, setMovies ] = useState([])
 
         const getMovies = (API) => {
-            axios.get(API).then((res) => console.log(res.data.results)).catch((err) => console.log(err))
+            axios.get(API)
+            .then((res) => setMovies(res.data.results))
+            .catch((err) => console.log(err))
         };
 
         const handleSubmit = (e) => {
@@ -42,8 +46,18 @@ export default function Main() {
             />
         </form>
         <div className="movie-container">
-
-        </div>
+            {
+                    movies.map ((movie) => (
+                    <MovieCard 
+                        key={movie.id}
+                        title={movie.title}
+                        poster_path={movie.poster_path}
+                        overview={movie.overview}
+                        vote_average={movie.vote_average} 
+                        /> 
+                        ))
+            }
+        </div> 
     </React.Fragment>
 
   )

@@ -2,11 +2,11 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // const handleClick = () => {
-    //     navigate ('/login')
-    // }
+    const handleClick = () => {
+        navigate ('/login')
+    }
 
   return (
     <div>
@@ -18,15 +18,13 @@ export default function Navbar() {
             <button
             type="button"
             className="btn btn-outline-light mx-2"
-            // onClick={handleClick}
-            >
+            onClick={handleClick} >
                 Login
             </button>
             <button
             type="button"
             className="btn btn-outline-light mx-2"
-            // onClick={() => navigate ('/register')}
-            >
+            onClick={() => navigate ('/register')} >
                 Register
             </button>
         </div>
