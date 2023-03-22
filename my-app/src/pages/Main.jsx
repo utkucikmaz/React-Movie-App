@@ -1,9 +1,11 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useContext} from "react";
 import { useState } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
 import NotFound from "../components/NotFound";
+import AuthContext from "../context/AuthContext";
+
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -16,9 +18,10 @@ const FILTERED = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&q
 export default function Main() {
 
         const [ searchTerm, setSearchTerm ] = useState("")
-        const[ movies, setMovies ] = useState([])
+        const [ movies, setMovies ] = useState([])
         const [ loading, setLoading ] = useState(false)
         const [ notFound, setNotFound] = useState(false)
+        const { currentUser } = useContext(AuthContext)
         
         let content;
         const getMovies = (API) => {
@@ -39,8 +42,12 @@ export default function Main() {
 
         const handleSubmit = (e) => {
             e.preventDefault();
-            getMovies(FILTERED + searchTerm)
-            setSearchTerm ('')
+            if(currentUser){
+                getMovies(FILTERED + searchTerm)
+                setSearchTerm ('')
+            }else{
+                alert('Please login to search a movie')
+            }
         }
         
         if(loading) {
