@@ -3,9 +3,13 @@ import { useState } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
 
-const UNFILTERED = 'https://api.themoviedb.org/3/discover/movie?api_key=c4fc804c03fb9b75054c5bb4fd565b9c';
+const API_KEY = process.env.REACT_APP_API_KEY
 
-const FILTERED = 'https://api.themoviedb.org/3/search/movie?api_key=c4fc804c03fb9b75054c5bb4fd565b9c&query='
+const UNFILTERED = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
+
+const FILTERED = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`
+
+
 
 export default function Main() {
 
