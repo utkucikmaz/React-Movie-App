@@ -142,7 +142,13 @@ body{
   position:relative;
   padding: 0;
   margin: 0;
-  display:contents
+  display:contents;
+}
+
+.movie-title{
+  color: #e6e6e6;
+  font-weight: 300;
+  font-size: 1.5rem;
 }
 
 .tag{
@@ -218,3 +224,4 @@ body{
   height: auto;
   object-fit: cover;
 }
+

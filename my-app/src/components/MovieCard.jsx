@@ -22,12 +22,11 @@ export default function MovieCard ({ title, poster_path, overview, vote_average 
   return (
 
     <div className='movie'>
-
-        <img src={IMG_API + poster_path} />
-        
+          <img src={IMG_API + poster_path} />
+          
         <div className='movie-info'>
             <div className='movie-name'>
-            <h3>{title}</h3>
+            <h3 className='movie-title'>{title}</h3>
             <span className={`tag ${setVoteClass(vote_average)}`}> {vote_average} </span>
             </div>
         </div>
