@@ -73,7 +73,7 @@ export default function Main() {
 
             <input
                 type='search'
-                placeholder="Search a movie..."
+                placeholder="   Search a movie..."
                 className="search-input"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}

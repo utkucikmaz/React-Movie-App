@@ -1,20 +1,17 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react'
+import AuthContext from '../context/AuthContext';
 
 
 export default function Login() {
 
-  const navigate = useNavigate();
+  const { handleLogin, loginError } = useContext(AuthContext)
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if(email && password){
-      navigate('/')
-    }
-    else{
-      document.getElementById("enter-password").hidden = false; 
+      handleLogin(email,password)
     }
   }
 
@@ -25,7 +22,7 @@ export default function Login() {
       </div>
       <div className='login-form'>
         <h1 className='form-title display-3'>Login</h1>
-        <form id='login' onSubmit={handleSubmit}>
+        <form id='login' onSubmit={(e) => handleSubmit(e)}>
           <div className='mb-5'>
             <label htmlFor='email' className='form-label display-4'>
               Email
@@ -56,9 +53,8 @@ export default function Login() {
             type='submit'
             className='btn btn-outline-dark form-control'
             value='Login'
-
           />  
-          <p hidden id='enter-password'>Please fill the form and then click Login again</p>
+          <div className={loginError ? 'alert alert-danger' : 'alert alert-danger d-none'} role='alert'>Please check your credentials</div>
         </form>
       </div>
     </div>
