@@ -20,8 +20,8 @@ export default function Login() {
 
   return (
     <div className='login'>
-      <div>
-        <img src='https://picsum.photos/800/850?grayscale' alt='random photos'/>
+      <div className='login-img-container'>
+        <img className='login-image' src='https://picsum.photos/800/850?grayscale' alt='random photos'/>
       </div>
       <div className='login-form'>
         <h1 className='form-title display-3'>Login</h1>

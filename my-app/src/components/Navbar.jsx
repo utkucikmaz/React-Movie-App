@@ -10,7 +10,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
         <a className="navbar-brand" href="/">
           React Movie App
         </a>

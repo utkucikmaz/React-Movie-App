@@ -2,6 +2,8 @@ import React, { useEffect} from "react";
 import { useState } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
+import Loading from "../components/Loading";
+import NotFound from "../components/NotFound";
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -15,17 +17,50 @@ export default function Main() {
 
         const [ searchTerm, setSearchTerm ] = useState("")
         const[ movies, setMovies ] = useState([])
-
+        const [ loading, setLoading ] = useState(false)
+        const [ notFound, setNotFound] = useState(false)
+        
+        let content;
         const getMovies = (API) => {
+            setLoading(true)
             axios.get(API)
-            .then((res) => setMovies(res.data.results))
-            .catch((err) => console.log(err))
+            .then((res) => {
+                setMovies(res.data.results)
+                setLoading(false)
+                if(res.data.results.length == 0){
+                    setNotFound(true)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+                setLoading(false)
+            })
         };
 
         const handleSubmit = (e) => {
             e.preventDefault();
             getMovies(FILTERED + searchTerm)
             setSearchTerm ('')
+        }
+        
+        if(loading) {
+            content = <Loading />
+        }else if(notFound){
+            content = <NotFound />
+        }else{
+            content = <div className="movie-container">
+            {
+                movies.map ((movie) => (
+                    <MovieCard 
+                    key={movie.id}
+                    title={movie.title}
+                    poster_path={movie.poster_path}
+                    overview={movie.overview}
+                    vote_average={movie.vote_average} 
+                    /> 
+                    ))
+                }
+            </div> 
         }
 
         useEffect (() => {
@@ -49,19 +84,9 @@ export default function Main() {
                 className="btn btn-outline-dark"
             />
         </form>
-        <div className="movie-container">
-            {
-                    movies.map ((movie) => (
-                    <MovieCard 
-                        key={movie.id}
-                        title={movie.title}
-                        poster_path={movie.poster_path}
-                        overview={movie.overview}
-                        vote_average={movie.vote_average} 
-                        /> 
-                        ))
-            }
-        </div> 
+        {
+            content       
+        }
     </React.Fragment>
 
   )
