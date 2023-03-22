@@ -131,6 +131,7 @@ body{
 
 .movie:hover .movie-over {
   transform: translateX(0%);
+  cursor: pointer;
 }
 
 .movie:hover{
@@ -164,4 +165,39 @@ body{
 
 .tag.red{
   background-color: #7f0000;
+}
+
+.login{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-form{
+  flex: 1;
+  background-color: #fff;
+  color: black;
+  padding: 5rem;
+}
+
+.form-title{
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.form-label{
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.form-control{
+  width: 90%;
+  margin: 1.5rem;
+}
+
+#enter-password{
+  color: red;
+  margin: 1rem;
+  text-align: center;
 }
