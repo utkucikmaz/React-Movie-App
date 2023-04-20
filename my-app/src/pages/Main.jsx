@@ -8,11 +8,8 @@ import AuthContext from "../context/AuthContext";
 
 
 const API_KEY = process.env.REACT_APP_API_KEY
-
 const UNFILTERED = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
-
 const FILTERED = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`
-
 
 
 export default function Main() {

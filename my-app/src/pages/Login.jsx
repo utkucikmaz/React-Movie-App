@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../auth/firebase-config';
 import { async } from '@firebase/util';
@@ -9,7 +8,6 @@ import { async } from '@firebase/util';
 export default function Login() {
 
   const navigate = useNavigate();
-  const { handleLogin, loginError } = useContext(AuthContext)
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
@@ -62,7 +60,6 @@ export default function Login() {
             className='btn btn-outline-dark form-control'
             value='Login'
           />  
-          <div className={loginError ? 'alert alert-danger' : 'alert alert-danger d-none'} role='alert'>Please check your credentials</div>
         </form>
       </div>
     </div>

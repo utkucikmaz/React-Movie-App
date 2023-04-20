@@ -250,23 +250,23 @@ body{
   padding: 4rem 5rem ;
 }
 
-.alert-danger{
+/* .alert-danger{
   display: flex;
   background-color: #7f0000c1;
   border: 1px solid #7f000000;
   color: rgb(255, 255, 255);
   justify-content: center;
   border-radius: 5px;
-}
+} */
 
-.alert-success{
+/* .alert-success{
   display: flex;
   background-color: #1b5e1fc1;
   border: 1px solid #1b5e1f00;
   color: rgb(255, 255, 255);
   justify-content: center;
   border-radius: 5px;
-}
+} */
 
 .user-id{
   color: #ffffff;

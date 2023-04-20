@@ -1,5 +1,4 @@
-import React, {useContext, useState} from 'react'
-import AuthContext from '../context/AuthContext'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../auth/firebase-config';
@@ -8,12 +7,10 @@ import { async } from '@firebase/util';
 export default function Register() {
 
   const navigate = useNavigate();
-  const { credentials, handleCredentials } = useContext(AuthContext);
   const [ firstName, setFirstName ] = useState('');
   const [ lastName, setLastName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
-  const [ alertSuccess, setAlertSuccess] = useState ('alert alert-success d-none')
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +62,6 @@ export default function Register() {
             />  
           </div>
           <input type='submit' className='btn btn-outline-dark form-control' value='Register'/>
-          <div className={alertSuccess} role='alert'>You have registered successfully</div>
         </form>
       </div>
       <div className='form-image register-img-container'>
