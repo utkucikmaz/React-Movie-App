@@ -37,24 +37,24 @@
   }
 }
 
-body{
+body {
   background-color: #e8e8e8;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-.buttons{
+.buttons {
   display: flex;
   flex-direction: row;
   height: 50px;
   justify-content: flex-end;
 }
 
-.navbar{
+.navbar {
   background-color: #474b54;
   padding: 1rem 3rem;
 }
 
-.navbar-brand{
+.navbar-brand {
   color: white !important;
   font-weight: 700;
   font-size: 1.5rem;
@@ -69,7 +69,7 @@ body{
   padding: 1rem;
 }
 
-.search-input{
+.search-input {
   height: 2.5rem;
   width: 25rem;
   border-radius: 6px;
@@ -78,42 +78,42 @@ body{
   margin-right: 0.5rem;
 }
 
-.movie-container{
+.movie-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 2rem;
 }
 
-.movie{
+.movie {
   background-color: #3d3d3dc0;
   color: #e6e6e6;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px rgba(0,0,0,1);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 1);
   overflow: hidden;
   margin: 1rem;
   width: 15rem;
   position: relative;
 }
 
-.movie img{
+.movie img {
   object-fit: cover;
   height: 25rem;
   max-width: 100%;
 }
 
-.movie-info{
+.movie-info {
   display: flex;
   padding: 0.7rem;
   align-items: center;
-  justify-content:flex-start;
+  justify-content: flex-start;
 }
 
-.movie-info h3{
+.movie-info h3 {
   margin: 0;
 }
 
-.movie-over{
+.movie-over {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -121,7 +121,7 @@ body{
   background-color: #49494948;
   backdrop-filter: blur(50px);
   color: #fff;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   overflow: auto;
   max-height: 100%;
   padding: 1rem;
@@ -136,75 +136,75 @@ body{
   cursor: pointer;
 }
 
-.movie:hover{
+.movie:hover {
   transform: scale(110%);
   transition: transform 0.3s ease-in-out;
 }
 
-.movie-name{
-  position:relative;
+.movie-name {
+  position: relative;
   padding: 0;
   margin: 0;
-  display:contents;
+  display: contents;
 }
 
-.movie-title{
+.movie-title {
   color: #e6e6e6;
   font-weight: 300;
   font-size: 1.5rem;
 }
 
-.tag{
+.tag {
   border-radius: 5px;
   padding: 0.3rem;
-  font-weight:700;
+  font-weight: 700;
   position: absolute;
   right: 0;
   top: 0;
 }
 
-.tag.green{
+.tag.green {
   background-color: #1b5e20;
 }
 
-.tag.orange{
+.tag.orange {
   background-color: #f57f17;
 }
 
-.tag.red{
+.tag.red {
   background-color: #7f0000;
 }
 
-.login{
+.login {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.login-form{
+.login-form {
   flex: 1;
   background-color: #e8e8e8;
   color: black;
   padding: 5rem;
 }
 
-.form-title{
+.form-title {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.form-label{
+.form-label {
   padding-left: 1.5rem;
   margin-bottom: 0;
   font-size: 1.5rem;
 }
 
-.form-control{
+.form-control {
   width: 90%;
   margin: 1.5rem;
 }
 
-#enter-password{
+#enter-password {
   display: flex;
   background-color: #7f0000c1;
   border: 1px solid #7f000000;
@@ -215,39 +215,39 @@ body{
   border-radius: 5px;
 }
 
-.no-movie{
+.no-movie {
   text-align: center;
   margin: 10rem;
   font-size: 1.5rem;
 }
 
-.login-img-container{
+.login-img-container {
   float: left;
   width: 50%;
   position: relative;
 }
 
-.login-image{
+.login-image {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
-.register-img-container{
+.register-img-container {
   float: right;
   width: 50%;
   position: relative;
 }
 
-.register-image{
+.register-image {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
-.register-form{
+.register-form {
   float: left;
   width: 50%;
-  padding: 4rem 5rem ;
+  padding: 4rem 5rem;
 }
 
 /* .alert-danger{
@@ -268,19 +268,19 @@ body{
   border-radius: 5px;
 } */
 
-.user-id{
+.user-id {
   color: #ffffff;
   font-size: 1.5rem;
   margin: 0.7rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
 
-.logout-icon{
- margin-left: 5px;
+.logout-icon {
+  margin-left: 5px;
 }
 
-.btn-logout{
+.btn-logout {
   background-color: #bdbdbd;
   color: black;
 }

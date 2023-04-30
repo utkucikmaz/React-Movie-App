@@ -1,98 +1,61 @@
-import React, { useEffect, useContext} from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
-import axios from "axios";
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
 import NotFound from "../components/NotFound";
 import AuthContext from "../context/AuthContext";
-
-
-const API_KEY = process.env.REACT_APP_API_KEY
-const UNFILTERED = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
-const FILTERED = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`
-
+import { useMovies } from "../hooks/use-movies";
 
 export default function Main() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [movies, loading, notFound] = useMovies(searchTerm);
 
-        const [ searchTerm, setSearchTerm ] = useState("")
-        const [ movies, setMovies ] = useState([])
-        const [ loading, setLoading ] = useState(false)
-        const [ notFound, setNotFound] = useState(false)
-        const { currentUser } = useContext(AuthContext)
-        
-        let content;
-        const getMovies = (API) => {
-            setLoading(true)
-            axios.get(API)
-            .then((res) => {
-                setMovies(res.data.results)
-                setLoading(false)
-                if(res.data.results.length == 0){
-                    setNotFound(true)
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-                setLoading(false)
-            })
-        };
+  const { currentUser } = useContext(AuthContext);
 
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            if(currentUser){
-                getMovies(FILTERED + searchTerm)
-                setSearchTerm ('')
-            }else{
-                alert('Please login to search a movie')
-            }
-        }
-        
-        if(loading) {
-            content = <Loading />
-        }else if(notFound){
-            content = <NotFound />
-        }else{
-            content = <div className="movie-container">
-            {
-                movies.map ((movie) => (
-                    <MovieCard 
-                    key={movie.id}
-                    title={movie.title}
-                    poster_path={movie.poster_path}
-                    overview={movie.overview}
-                    vote_average={movie.vote_average} 
-                    /> 
-                    ))
-                }
-            </div> 
-        }
+  let content;
 
-        useEffect (() => {
-            getMovies(UNFILTERED)
-        }, []);
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (currentUser) {
+      setSearchTerm("");
+    } else {
+      alert("Please login to search a movie");
+    }
+  };
+
+  if (loading) {
+    content = <Loading />;
+  } else if (notFound) {
+    content = <NotFound />;
+  } else {
+    content = (
+      <div className="movie-container">
+        {movies.map(movie => (
+          <MovieCard
+            key={movie.id}
+            title={movie.title}
+            poster_path={movie.poster_path}
+            overview={movie.overview}
+            vote_average={movie.vote_average}
+          />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
-        <form className="search" onSubmit={handleSubmit}>
-
-            <input
-                type='search'
-                placeholder="   Search a movie..."
-                className="search-input"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <input
-                type='submit'
-                value='Search'
-                className="btn btn-outline-dark"
-            />
-        </form>
-        {
-            content       
-        }
+      <form className="search" onSubmit={handleSubmit}>
+        <input
+          type="search"
+          placeholder="   Search a movie..."
+          className="search-input"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+        <input type="submit" value="Search" className="btn btn-outline-dark" />
+      </form>
+      {content}
     </React.Fragment>
-
-  )
-
+  );
 }
