@@ -1,20 +1,19 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
 import NotFound from "../components/NotFound";
-import AuthContext from "../context/AuthContext";
 import { useMovies } from "../hooks/use-movies";
+import { useAuth } from "hooks/context/useAuth";
 
 export default function Main() {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, loading, notFound] = useMovies(searchTerm);
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useAuth();
 
   let content;
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (currentUser) {
       setSearchTerm("");
@@ -44,7 +43,7 @@ export default function Main() {
   }
 
   return (
-    <React.Fragment>
+    <>
       <form className="search" onSubmit={handleSubmit}>
         <input
           type="search"
@@ -56,6 +55,6 @@ export default function Main() {
         <input type="submit" value="Search" className="btn btn-outline-dark" />
       </form>
       {content}
-    </React.Fragment>
+    </>
   );
 }
