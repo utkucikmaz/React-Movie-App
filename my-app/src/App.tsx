@@ -7,21 +7,18 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "./App.css";
 import { AuthContextProvider } from "./context/AuthContext";
-import { LoadingProvider } from "./context/LoadingContext";
 
 function App() {
   return (
     <React.Fragment>
       <Router>
         <AuthContextProvider>
-          <LoadingProvider>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Routes>
-          </LoadingProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
         </AuthContextProvider>
       </Router>
     </React.Fragment>

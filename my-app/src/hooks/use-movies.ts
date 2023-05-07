@@ -1,11 +1,10 @@
 import { MovieResult, getMovies } from "../api/get-movies.api";
 import { useEffect, useState } from "react";
-import { useLoading } from "hooks/context/useLoading";
 
 export const useMovies = (searchTerm: string) => {
   const [movies, setMovies] = useState<MovieResult>([]);
   const [notFound, setNotFound] = useState(false);
-  const { loading, setLoading } = useLoading();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchedMovies = async (searchTerm: string) => {
