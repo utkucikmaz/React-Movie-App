@@ -6,11 +6,12 @@ const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&
 
 export type MovieResult = Array<{
   title: string;
-  id: string;
+  id: number;
   poster_path: string;
   overview: string;
   vote_average: number;
 }>;
+
 export const getMovies = async (searchTerm: string) => {
   const path = searchTerm ? searchUrl + searchTerm : discoverUrl;
   const movies = await axios.get<{

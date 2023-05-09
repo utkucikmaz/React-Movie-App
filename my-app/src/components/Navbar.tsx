@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import { useAuth } from "hooks/context/useAuth";
@@ -24,6 +24,13 @@ export default function Navbar() {
                 {currentUser.displayName}
               </h1>
               <button
+                type="button"
+                className="btn btn-outline-light mx-2 btn-logout"
+                onClick={() => navigate("/favorites")}
+              >
+                Favorites
+              </button>
+              <button
                 className="btn btn-outline-light mx-2 btn-logout"
                 onClick={handleLogOut}
               >
@@ -48,13 +55,16 @@ export default function Navbar() {
             </div>
           ) : (
             <div>
-              <button
+              {/* <button
                 type="button"
                 className="btn btn-outline-light mx-2"
                 onClick={() => navigate("/login")}
               >
                 Login
-              </button>
+              </button> */}
+              <Link className="btn btn-outline-light mx-2" to={"login"}>
+                Login
+              </Link>
               <button
                 type="button"
                 className="btn btn-outline-light mx-2"
