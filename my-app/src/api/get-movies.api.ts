@@ -4,13 +4,14 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
 const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
-export type MovieResult = Array<{
+export type MovieType = {
   title: string;
   id: number;
   poster_path: string;
   overview: string;
   vote_average: number;
-}>;
+};
+export type MovieResult = Array<MovieType>;
 
 export const getMovies = async (searchTerm: string) => {
   const path = searchTerm ? searchUrl + searchTerm : discoverUrl;

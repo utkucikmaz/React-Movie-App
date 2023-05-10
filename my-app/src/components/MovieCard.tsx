@@ -1,22 +1,22 @@
 import { useAuth } from "hooks/context/useAuth";
-import { supabase } from "supabaseClient";
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
 
-type TypeMovieCard = {
+export type MovieCardProps = {
   title: string;
   poster_path: string;
   overview: string;
   vote_average: number;
   id: number;
+  onClickFavButton: () => void;
 };
 export const MovieCard = ({
   title,
   poster_path,
   overview,
   vote_average,
-  id,
-}: TypeMovieCard) => {
+  onClickFavButton,
+}: MovieCardProps) => {
   const { currentUser } = useAuth();
 
   const setVoteClass = (vote: number) => {
@@ -26,21 +26,6 @@ export const MovieCard = ({
       return "orange";
     } else {
       return "red";
-    }
-  };
-
-  const handleFav = async () => {
-    if (currentUser?.uid) {
-      await supabase.from("MovieFavorites").insert([
-        {
-          title,
-          poster_path,
-          overview,
-          vote_average,
-          movie_id: id,
-          FavUser: currentUser.uid,
-        },
-      ]);
     }
   };
 
@@ -55,7 +40,7 @@ export const MovieCard = ({
             <span className={`tag ${setVoteClass(vote_average)}`}>
               {" "}
               {vote_average}{" "}
-              <button type="button" onClick={handleFav}>
+              <button type="button" onClick={onClickFavButton}>
                 Favorite
               </button>
             </span>
