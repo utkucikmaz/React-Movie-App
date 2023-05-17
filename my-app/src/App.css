@@ -71,11 +71,12 @@ body {
 
 .search-input {
   height: 2.5rem;
-  width: 25rem;
+  width: 35rem;
   border-radius: 6px;
   outline: none;
   border: none;
   margin-right: 0.5rem;
+  padding-left: 1rem;
 }
 
 .movie-container {
