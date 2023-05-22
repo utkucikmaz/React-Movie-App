@@ -22,7 +22,7 @@ export const Movies = ({ searchTerm }: MoviesProps) => {
     // const mappedFirstArrayElement = {
     //     ...movies[0],
     //     is_favorite: false,
-    // };
+    // };filter boolean
 
     // output
     // == movies [{ is_fav: true }, { is_fav: true }]
