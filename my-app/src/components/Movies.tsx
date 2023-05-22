@@ -5,7 +5,7 @@ import { MovieCard, MovieCardProps } from "components/MovieCard";
 import { supabase } from "supabaseClient";
 import { useAuth } from "hooks/context/useAuth";
 import { useFavorites } from "hooks/useFavorites";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 
 type MoviesProps = {
     searchTerm: string;
