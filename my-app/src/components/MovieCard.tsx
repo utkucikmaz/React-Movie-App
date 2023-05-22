@@ -1,4 +1,5 @@
 import { useAuth } from "hooks/context/useAuth";
+import Favbutton from "./Favbutton";
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
 
@@ -8,6 +9,7 @@ export type MovieCardProps = {
     overview: string;
     vote_average: number;
     id: number;
+    is_favorite: boolean;
     onClickFavButton: () => void;
 };
 export const MovieCard = ({
@@ -16,6 +18,7 @@ export const MovieCard = ({
     overview,
     vote_average,
     onClickFavButton,
+    is_favorite,
 }: MovieCardProps) => {
     const { currentUser } = useAuth();
 
@@ -40,9 +43,6 @@ export const MovieCard = ({
                         <span className={`tag ${setVoteClass(vote_average)}`}>
                             {" "}
                             {vote_average}{" "}
-                            <button type="button" onClick={onClickFavButton}>
-                                Fav
-                            </button>
                         </span>
                     ) : (
                         ""
@@ -50,7 +50,11 @@ export const MovieCard = ({
                 </div>
             </div>
             <div className="movie-over">
-                <h2>Overview</h2>
+                <h2 className="movie-title">{title}</h2>
+                <div>
+                    {is_favorite}
+                    <Favbutton onClick={onClickFavButton} />
+                </div>
                 <p>{overview}</p>
             </div>
         </div>

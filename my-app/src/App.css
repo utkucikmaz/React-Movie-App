@@ -116,6 +116,7 @@ body {
 
 .movie-over {
   position: absolute;
+  top: 12rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -151,8 +152,9 @@ body {
 
 .movie-title {
   color: #e6e6e6;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.5rem;
+  margin-right: 2rem;
 }
 
 .tag {
@@ -284,4 +286,40 @@ body {
 .btn-logout {
   background-color: #bdbdbd;
   color: black;
+}
+
+.fav-button{
+  display:block;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.fav-button:hover{
+  background-color: transparent;
+  transform: scale(150%);
+  transition: transform 0.2s ease-in-out;
+}
+
+.fav-button-icon{
+    display: block;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.fav-button-icon:hover{
+ color: red;
+}
+
+.filled-red {
+  background-color: red;
+}
+
+.clicked{
+    background-color: red;
 }

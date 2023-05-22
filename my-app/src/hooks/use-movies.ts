@@ -39,7 +39,7 @@ const reducer = (state: State, action: Action): State => {
             return {
                 ...state,
                 movies: [],
-                notFound: action.payload,
+                notFound: true,
             };
         default:
             return state;

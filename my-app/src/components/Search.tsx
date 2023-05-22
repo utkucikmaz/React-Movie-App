@@ -7,6 +7,7 @@ export const Search = ({
         <div className="d-flex justify-content-center">
             <input
                 type="search"
+                data-cy="searchInput"
                 placeholder="Search a movie..."
                 className="search-input"
                 onChange={(e) => setSearchTerm(e.target.value)}

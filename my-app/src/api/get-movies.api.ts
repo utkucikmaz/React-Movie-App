@@ -5,19 +5,20 @@ const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_K
 const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 export type MovieType = {
-  title: string;
-  id: number;
-  poster_path: string;
-  overview: string;
-  vote_average: number;
+    title: string;
+    id: number;
+    poster_path: string;
+    overview: string;
+    vote_average: number;
+    is_favorite: boolean;
 };
 export type MovieResult = Array<MovieType>;
 
 export const getMovies = async (searchTerm: string) => {
-  const path = searchTerm ? searchUrl + searchTerm : discoverUrl;
-  const movies = await axios.get<{
-    results: MovieResult;
-  }>(path);
+    const path = searchTerm ? searchUrl + searchTerm : discoverUrl;
+    const movies = await axios.get<{
+        results: MovieResult;
+    }>(path);
 
-  return movies.data;
+    return movies.data;
 };

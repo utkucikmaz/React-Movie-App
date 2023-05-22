@@ -15,9 +15,8 @@
     "bootstrap": "^4.6.2",
     "bootstrap-icons": "^1.10.5",
     "firebase": "^9.18.0",
-    "lord-icon-element": "^4.1.1",
-    "lottie-web": "^5.11.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
@@ -32,8 +31,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -47,5 +45,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/cypress": "^1.1.3",
+    "cypress": "^12.12.0",
+    "webpack": "^5.83.1"
   }
 }
