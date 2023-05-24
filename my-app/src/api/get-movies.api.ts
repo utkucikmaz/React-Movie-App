@@ -5,12 +5,12 @@ const discoverUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_K
 const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 export type MovieType = {
+    is_favorite: boolean;
     title: string;
     id: number;
     poster_path: string;
     overview: string;
     vote_average: number;
-    is_favorite: boolean;
 };
 export type MovieResult = Array<MovieType>;
 

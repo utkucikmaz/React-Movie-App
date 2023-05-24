@@ -306,7 +306,7 @@ body {
   transition: transform 0.2s ease-in-out;
 }
 
-.fav-button-icon{
+/* .fav-button-icon{
     display: block;
   font-size: 1.5rem;
   color: #fff;
@@ -322,4 +322,4 @@ body {
 
 .clicked{
     background-color: red;
-}
+} */

@@ -1,83 +1,12 @@
-// import React, { useState } from "react";
-// import { supabase } from "supabaseClient";
-
-// type FavbuttonProps = {
-//     onClick: () => void;
-// };
-
-// const Favbutton: React.FC<FavbuttonProps> = ({ onClick }) => {
-//     const [isClicked, setIsClicked] = useState(false);
-
-//     const onClickFavButton = () => {
-//         setIsClicked(!isClicked);
-//         onClick();
-//     };
-
-//     return (
-//         <button
-//             type="button"
-//             id="FavTestId"
-//             onClick={onClickFavButton}
-//             data-cy="FavTest"
-//             className={`fav-button ${isClicked ? "clicked" : ""}`}
-//         >
-//             <span className="fav-button-icon">&#9825;</span>
-//         </button>
-//     );
-// };
-
-// export default Favbutton;
-
-import React, { useState, useEffect } from "react";
-import { supabase } from "supabaseClient";
+import is_favorite from "./MovieCard";
 
 type FavbuttonProps = {
     onClick: () => void;
 };
 
 const Favbutton: React.FC<FavbuttonProps> = ({ onClick }) => {
-    const [isClicked, setIsClicked] = useState(false);
-    const [isFavorite, setIsFavorite] = useState(false);
-
-    useEffect(() => {
-        checkFavoriteStatus();
-    }, []);
-
-    const checkFavoriteStatus = async () => {
-        try {
-            const { data: MovieFavorites, error } = await supabase
-                .from("MovieFavorites")
-                .select("favorite_button");
-
-            if (error) {
-                throw error;
-            }
-
-            // Assuming you only have one row for the movie in the MovieFavorites table
-            if (MovieFavorites.length > 0) {
-                const isFavorite = MovieFavorites[0].favorite_button;
-                setIsFavorite(isFavorite);
-                setIsClicked(isFavorite);
-            }
-        } catch (error) {
-            console.error("Error fetching favorite status:", error);
-        }
-    };
-
-    const onClickFavButton = async () => {
-        try {
-            setIsClicked(!isClicked);
-            setIsFavorite(!isFavorite);
-
-            // Update the favorite_button column in the MovieFavorites table
-            await supabase
-                .from("MovieFavorites")
-                .update({ favorite_button: !isFavorite });
-
-            onClick();
-        } catch (error) {
-            console.error("Error updating favorite status:", error);
-        }
+    const onClickFavButton = () => {
+        onClick();
     };
 
     return (
@@ -86,13 +15,34 @@ const Favbutton: React.FC<FavbuttonProps> = ({ onClick }) => {
             id="FavTestId"
             onClick={onClickFavButton}
             data-cy="FavTest"
-            className={`fav-button ${isClicked ? "clicked" : ""}`}
+            className="fav-button"
         >
-            <span
-                className={`fav-button-icon ${isFavorite ? "filled-red" : ""}`}
-            >
-                &#9825;
-            </span>
+            {is_favorite ? (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="red"
+                    className="bi bi-heart-fill"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                    />
+                </svg>
+            ) : (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-heart"
+                    viewBox="0 0 16 16"
+                >
+                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                </svg>
+            )}
         </button>
     );
 };
