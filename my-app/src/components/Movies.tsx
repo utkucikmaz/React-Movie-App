@@ -5,42 +5,48 @@ import { MovieCard, MovieCardProps } from "components/MovieCard";
 import { supabase } from "supabaseClient";
 import { useAuth } from "hooks/context/useAuth";
 import { useFavorites } from "hooks/useFavorites";
-//import { useEffect } from "react";
 
 type MoviesProps = {
     searchTerm: string;
 };
+
 export const Movies = ({ searchTerm }: MoviesProps) => {
     const { FMovies, fetchedMovies } = useFavorites();
     const [movies, loading, notFound] = useMovies(searchTerm);
     const { currentUser } = useAuth();
 
-    // input
-    // == movies [{}, {}]
-    // == FMovies [{}, {}]
-
-    // const mappedFirstArrayElement = {
-    //     ...movies[0],
-    //     is_favorite: false,
-    // };filter boolean
-
-    // output
-    // == movies [{ is_fav: true }, { is_fav: true }]
+    const MappedArray = movies.map((movie) => ({
+        ...movie,
+        is_favorite: false,
+    }));
+    const FMoviesArray = FMovies.map((fmovie) => ({
+        ...fmovie,
+        is_favorite: true,
+    }));
+    const updatedArray = MappedArray.map((movie) => {
+        const matchingMovie = FMoviesArray.filter(
+            (fmovie) => fmovie.movie_id === movie.id
+        );
+        if (matchingMovie.length > 0) {
+            return { ...movie, is_favorite: true };
+        }
+        return { ...movie, is_favorite: false };
+    });
+    console.log(updatedArray);
 
     if (loading) {
         return <Loading />;
     }
-
     if (notFound) {
         return <NotFound />;
     }
-
     const handleFav = async ({
         title,
         poster_path,
         overview,
         vote_average,
         id,
+        is_favorite,
     }: Omit<MovieCardProps, "onClickFavButton">) => {
         if (currentUser?.uid) {
             await supabase.from("MovieFavorites").insert([
@@ -51,29 +57,21 @@ export const Movies = ({ searchTerm }: MoviesProps) => {
                     vote_average,
                     movie_id: id,
                     FavUser: currentUser.uid,
-                    favorite_button: true,
+                    is_favorite,
                 },
             ]);
         }
     };
 
-    const isFavorite = function (id: Number): boolean {
-        const favoriteMovies = fetchedMovies;
-
-        return true;
-        // get favorites
-        // return true;
-    };
-
     return (
         <div className="movie-container">
-            {movies.length === 0 ? (
+            {updatedArray.length === 0 ? (
                 <p>
                     We are deeply sorry to inform you that there is no movie
                     under this name...
                 </p>
             ) : (
-                movies.map((movie) => (
+                updatedArray.map((movie) => (
                     <MovieCard
                         key={movie.id}
                         id={movie.id}
@@ -98,3 +96,5 @@ export const Movies = ({ searchTerm }: MoviesProps) => {
         </div>
     );
 };
+
+// export const is_favorite = false || true;
