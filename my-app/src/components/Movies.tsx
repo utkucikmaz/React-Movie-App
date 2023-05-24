@@ -11,7 +11,7 @@ type MoviesProps = {
 };
 
 export const Movies = ({ searchTerm }: MoviesProps) => {
-    const { FMovies, fetchedMovies } = useFavorites();
+    const { FMovies } = useFavorites();
     const [movies, loading, notFound] = useMovies(searchTerm);
     const { currentUser } = useAuth();
 
@@ -32,7 +32,6 @@ export const Movies = ({ searchTerm }: MoviesProps) => {
         }
         return { ...movie, is_favorite: false };
     });
-    console.log(updatedArray);
 
     if (loading) {
         return <Loading />;
@@ -40,6 +39,7 @@ export const Movies = ({ searchTerm }: MoviesProps) => {
     if (notFound) {
         return <NotFound />;
     }
+
     const handleFav = async ({
         title,
         poster_path,
@@ -96,5 +96,3 @@ export const Movies = ({ searchTerm }: MoviesProps) => {
         </div>
     );
 };
-
-// export const is_favorite = false || true;

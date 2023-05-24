@@ -288,38 +288,25 @@ body {
   color: black;
 }
 
-.fav-button{
+#FavTestId{
   display:block;
   background-color: transparent;
   border: none;
   outline: none;
   position: absolute;
   right: 0.5rem;
-  top: 0.5rem;
+  top: 1rem;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.fav-button:hover{
+#FavTestId:hover{
   background-color: transparent;
   transform: scale(150%);
   transition: transform 0.2s ease-in-out;
 }
 
-/* .fav-button-icon{
-    display: block;
-  font-size: 1.5rem;
-  color: #fff;
+.Clicked{
+  color: blueviolet;
+  background-color: yellow;
 }
-
-.fav-button-icon:hover{
- color: red;
-}
-
-.filled-red {
-  background-color: red;
-}
-
-.clicked{
-    background-color: red;
-} */
