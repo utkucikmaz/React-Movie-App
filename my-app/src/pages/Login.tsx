@@ -2,6 +2,8 @@ import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -14,7 +16,16 @@ export default function Login() {
             await signInWithEmailAndPassword(auth, email, password);
             navigate("/");
         } catch (err) {
-            alert(err);
+            toast.error("The information is not correct!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     };
 
@@ -65,6 +76,18 @@ export default function Login() {
                         type="submit"
                         className="btn btn-outline-dark form-control"
                         value="Login"
+                    />
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="colored"
                     />
                 </form>
             </div>
